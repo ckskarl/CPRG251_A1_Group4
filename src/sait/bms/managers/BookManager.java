@@ -9,7 +9,19 @@ public class BookManager{
 	
 	public void run() throws IOException{
 		this.readFile();
-		System.out.print(books.get(0).toString());
+		
+		//just for testing
+		//for (int i=0;i<=10;i++) {
+		//	System.out.println(books.get(i).toString());
+		//}
+		
+		
+		/*
+		 * for checkOut method
+		 */
+		long inputISBN=9795333191914L; //pseudo input for ISBN
+		this.checkOut(inputISBN);
+		
 	}
 	
 	public void readFile() throws IOException {
@@ -35,4 +47,32 @@ public class BookManager{
 		}
 		fileReader.close();
 	}
+	
+	/*
+	 *This method read the user input, then compare it with the ISBN of each book in the array list. 
+	 *If ISBN matches, it then check for the available quantity.
+	 *If the quantity is non-zero, the quantity will be deccremented and the book information will be displayed. The book is considered to be checked out.
+	 *If the qunatity is zero, it displays the book is not available.
+	 *If there is no match result, it displays an error message. 
+	 */
+	public void checkOut(long inputISBN) {
+		//System.out.println(inputISBN);
+		int matchCount=0;
+		for (Book currentBook : this.books) {
+			if (currentBook.getIsbn()== inputISBN) {
+				matchCount++;
+				if (currentBook.getAvailableQty()==0) {
+					System.out.println("The book is currently unavailable");
+				} 
+				else {
+					currentBook.setAvailableQty(currentBook.getAvailableQty()-1);;
+					System.out.println("Comfirmation: " + currentBook);
+				}
+			}
+		}
+			if (matchCount==0) {
+				System.out.println("ERROR: There is no match result.");
+			}
+	}
 }
+
