@@ -3,27 +3,71 @@ import sait.bms.problemdomain.*;
 import java.util.*;
 import java.io.*;
 
+/**
+ * This class contains most of public methods to interact with user.
+ * @author Scott Normore, Gao Liu, Christian Lay, Kin Shing Chong
+ * 
+ */
 public class BookManager{
 	private final static String PATH ="res\\books.txt";
 	private ArrayList<Book> books=new ArrayList<>();
 	
 	public void run() throws IOException{
 		this.readFile();
+		while(true) {
+		printMenu();
+		Scanner in = new Scanner(System.in);
+		String input = in.nextLine();
+		if(input.equals("1")) {
+			System.out.print("Enter ISBN of book: ");
+			long inputISBN = Long.parseLong(in.nextLine());
+			this.checkOut(inputISBN);
+		}
+		else if (input.equals("2")) {
+			System.out.print("Enter title to search for: ");
+			String searchInput = in.nextLine().toLowerCase();
+			this.searchBook(searchInput);
+		}
+		else if (input.equals("3")) {
+			// display a list of book by type
+		}
+		else if (input.equals("4")) {
+			//produce random book list
+		}
+		else if (input.equals("5")) {
+			//save new arrayList to txt file
+			break;
+		}
+		else {
+			System.out.println("ERROR: Invalid input, please try again!");
+		}
+		}
 		
-		//just for testing
-		//for (int i=0;i<=10;i++) {
-		//	System.out.println(books.get(i).toString());
-		//}
-		
-		
-		/*
-		 * for checkOut method
-		 */
-		long inputISBN=9795333191914L; //pseudo input for ISBN
-		this.checkOut(inputISBN);
-		
+		System.out.println("Thanks for using! File has been updated. See you!");		
 	}
 	
+	/**
+	 * a method to print menu
+	 * @author Gao Liu
+	 */
+	private void printMenu() {
+		// TODO Auto-generated method stub
+		System.out.println("Welcome in ABC Book Company: How May We Assist You?");
+		System.out.println("1	Checkout Book");
+		System.out.println("2	Find Books by Title");
+		System.out.println("3	Display Books by Type");
+		System.out.println("4	Produce Random Book List");
+		System.out.println("5	Save & Exit");
+		System.out.println();
+		System.out.print("Enter option: ");
+	}
+
+	/**
+	 * a method that parses the supplied “books.txt” file into a single array list. 
+	 * The array list will be able to contain all Book types
+	 * @throws IOException
+	 * @author Scott Normore, Gao Liu, Christian Lay, Kin Shing Chong
+	 */
 	public void readFile() throws IOException {
 		Scanner fileReader = new Scanner(new File(PATH));
 		while(fileReader.hasNextLine()){
@@ -48,13 +92,15 @@ public class BookManager{
 		fileReader.close();
 	}
 	
-	/*
-	 *This method read the user input, then compare it with the ISBN of each book in the array list. 
-	 *If ISBN matches, it then check for the available quantity.
-	 *If the quantity is non-zero, the quantity will be deccremented and the book information will be displayed. The book is considered to be checked out.
-	 *If the qunatity is zero, it displays the book is not available.
-	 *If there is no match result, it displays an error message. 
-	 */
+/**
+ * This method read the user input, then compare it with the ISBN of each book in the array list. 
+ * If ISBN matches, it then check for the available quantity.
+ * If the quantity is non-zero, the quantity will be deccremented and the book information will be displayed. The book is considered to be checked out.
+ * If the qunatity is zero, it displays the book is not available.
+ * If there is no match result, it displays an error message. 
+ * @param inputISBN user input to compare with ISBN of books
+ * @author Kin Shing Chong
+ */
 	public void checkOut(long inputISBN) {
 		//System.out.println(inputISBN);
 		int matchCount=0;
@@ -66,13 +112,35 @@ public class BookManager{
 				} 
 				else {
 					currentBook.setAvailableQty(currentBook.getAvailableQty()-1);;
-					System.out.println("Comfirmation: " + currentBook);
+					System.out.println("The book \""+ currentBook.getTitle()+"\" has been checked out.");
+					System.out.println("It can be located using a call number: "+ currentBook.getCallNumber());
 				}
 			}
 		}
 			if (matchCount==0) {
 				System.out.println("ERROR: There is no match result.");
 			}
+			System.out.println();
+	}
+	
+	/**
+	 * This method read the user input, then performs a case-insensitive search with title of each book in the arrayList
+	 * if the title containing the input, then its information will be displayed.
+	 * otherwise, an ERROR will be displayed to show no match.
+	 * @param input user input
+	 * @author Gao Liu 
+	 */
+	public void searchBook(String input) {
+		int matchCount=0;
+		for(Book currentBook : this.books ) {
+			if(currentBook.getTitle().toLowerCase().contains(input)) {
+				matchCount++;
+				System.out.println(currentBook);
+			}		
+		}
+		if(matchCount==0) {
+			System.out.println("ERROR: There is no match result.");
+		}
 	}
 }
 
