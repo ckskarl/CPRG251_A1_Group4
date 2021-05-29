@@ -5,7 +5,13 @@ public class Periodical extends Book {
 
 	public Periodical(long isbn, String callNumber, int availableQty, int totalQty, String title, String frequency) {
 		super(isbn, callNumber, availableQty, totalQty, title);
-		this.frequency = frequency;
+		switch(frequency) {
+		case "D": this.frequency = "Daily"; break;
+		case "V": this.frequency = "Weekly"; break;
+		case "G": this.frequency = "Monthly"; break;
+		case "I": this.frequency = "Bimonthly"; break;
+		case "N": this.frequency = "Quarterly"; break;
+		}
 	}
 
 	public String getFrequency() {
@@ -18,9 +24,8 @@ public class Periodical extends Book {
 
 	@Override
 	public String toString() {
-		return "Periodical [frequency=" + frequency + ", getIsbn()=" + getIsbn() + ", getCallNumber()="
-				+ getCallNumber() + ", getAvailableQty()=" + getAvailableQty() + ", getTotalQty()=" + getTotalQty()
-				+ ", getTitle()=" + getTitle() + "]";
+		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",
+				getCallNumber(), "Available", getAvailableQty(), "Total:", getTotalQty(), "Title:", getTitle(), "Frequency:", getFrequency());
 	}
 	
 	
