@@ -7,10 +7,10 @@ public class Periodical extends Book {
 		super(isbn, callNumber, availableQty, totalQty, title);
 		switch(frequency) {
 		case "D": this.frequency = "Daily"; break;
-		case "V": this.frequency = "Weekly"; break;
-		case "G": this.frequency = "Monthly"; break;
-		case "I": this.frequency = "Bimonthly"; break;
-		case "N": this.frequency = "Quarterly"; break;
+		case "W": this.frequency = "Weekly"; break;
+		case "M": this.frequency = "Monthly"; break;
+		case "B": this.frequency = "Bimonthly"; break;
+		case "Q": this.frequency = "Quarterly"; break;
 		}
 	}
 
