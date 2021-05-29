@@ -10,7 +10,13 @@ public class CookBook extends Book {
 	public CookBook(long isbn, String callNumber, int availableQty, int totalQty, String title, String publisher, String diet) {
 		super(isbn, callNumber, availableQty, totalQty, title);
 		this.publisher=publisher;
-		this.diet=diet;
+		switch(diet) {
+		case "D": this.diet = "Diabetic"; break;
+		case "V": this.diet = "Vegetarian"; break;
+		case "G": this.diet = "Gluten-free"; break;
+		case "I": this.diet = "International"; break;
+		case "N": this.diet = "None"; break;
+		}
 	}
 	public String getPublisher() {
 		return publisher;
@@ -26,9 +32,8 @@ public class CookBook extends Book {
 	}
 	@Override
 	public String toString() {
-		return "CookBook [publisher=" + publisher + ", diet=" + diet + ", getIsbn()=" + getIsbn() + ", getCallNumber()="
-				+ getCallNumber() + ", getAvailableQty()=" + getAvailableQty() + ", getTotalQty()=" + getTotalQty()
-				+ ", getTitle()=" + getTitle() + "]";
+		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",
+				getCallNumber(), "Available", getAvailableQty(), "Total:", getTotalQty(), "Title:", getTitle(), "Publisher:", getPublisher() , "Diet:", getDiet());
 	}
 	
 }

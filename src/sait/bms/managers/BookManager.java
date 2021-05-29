@@ -26,6 +26,7 @@ public class BookManager{
 		else if (input.equals("2")) {
 			System.out.print("Enter title to search for: ");
 			String searchInput = in.nextLine().toLowerCase();
+			System.out.println("Matching books:");
 			this.searchBook(searchInput);
 		}
 		else if (input.equals("3")) {
@@ -135,7 +136,7 @@ public class BookManager{
 		for(Book currentBook : this.books ) {
 			if(currentBook.getTitle().toLowerCase().contains(input)) {
 				matchCount++;
-				System.out.println(currentBook);
+				System.out.println(currentBook.toString());
 			}		
 		}
 		if(matchCount==0) {
