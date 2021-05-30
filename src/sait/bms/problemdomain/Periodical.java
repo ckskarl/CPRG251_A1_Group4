@@ -21,7 +21,14 @@ public class Periodical extends Book {
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
+	
+	//other methods
 
+	@Override
+	public String formatToFile() {
+		return super.formatToFile()+";"+this.frequency.charAt(0);
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",

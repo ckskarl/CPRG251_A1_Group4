@@ -49,7 +49,14 @@ public class Paperback extends Book {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-
+	
+	//other methods
+	
+	@Override
+	public String formatToFile() {
+		return super.formatToFile()+";"+this.authors+";"+this.year+";"+this.genre.charAt(0);
+	}
+	
 	@Override
 	public String toString() {
 		 return String.format(

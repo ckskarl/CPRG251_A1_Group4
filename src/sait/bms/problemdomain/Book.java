@@ -61,7 +61,13 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
+	//other methods
+	
+	public String formatToFile() {
+		return this.isbn+";" + this.callNumber+";" + this.availableQty+";" + this.totalQty+";" + this.title;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("%18s%13s%n%18s%13s%n%18s%13d%n%18s%13d%n%18s%30s%n", "ISBN:", isbn, "Call Number:",

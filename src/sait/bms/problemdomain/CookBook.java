@@ -30,6 +30,13 @@ public class CookBook extends Book {
 	public void setDiet(String diet) {
 		this.diet = diet;
 	}
+	
+	//other methods
+	
+	@Override
+	public String formatToFile() {
+		return super.formatToFile()+";"+this.publisher+";"+this.diet.charAt(0);
+	}
 	@Override
 	public String toString() {
 		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",

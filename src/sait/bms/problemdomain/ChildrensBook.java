@@ -29,6 +29,13 @@ public class ChildrensBook extends Book {
 	public void setFormat(String format) {
 		this.format = format;
 	}
+	
+	//other methods
+	
+	@Override
+	public String formatToFile() {
+		return super.formatToFile()+";"+this.authors+";"+this.format.charAt(0);
+	}
 	@Override
 	public String toString() {
 		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",
