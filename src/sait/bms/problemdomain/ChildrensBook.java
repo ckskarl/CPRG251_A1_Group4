@@ -29,6 +29,9 @@ public class ChildrensBook extends Book {
 	public void setFormat(String format) {
 		this.format = format;
 	}
+	
+	//other methods
+	
 	@Override
 	public String formatToFile() {
 		return super.formatToFile()+";"+this.authors+";"+this.format.charAt(0);

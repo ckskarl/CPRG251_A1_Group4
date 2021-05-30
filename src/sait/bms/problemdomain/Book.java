@@ -62,6 +62,8 @@ public class Book {
 		this.title = title;
 	}
 	
+	//other methods
+	
 	public String formatToFile() {
 		return this.isbn+";" + this.callNumber+";" + this.availableQty+";" + this.totalQty+";" + this.title;
 	}

@@ -256,6 +256,7 @@ public class BookManager {
 			System.out.println(books.get(i).toString());
 		}
 	}
+	
 	/**
 	 * This method updates the books list with the checked out/newly added books.
 	 * This method is called whenever one uses the exit input to exit the program.

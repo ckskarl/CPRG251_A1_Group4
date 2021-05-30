@@ -50,6 +50,8 @@ public class Paperback extends Book {
 		this.genre = genre;
 	}
 	
+	//other methods
+	
 	@Override
 	public String formatToFile() {
 		return super.formatToFile()+";"+this.authors+";"+this.year+";"+this.genre.charAt(0);

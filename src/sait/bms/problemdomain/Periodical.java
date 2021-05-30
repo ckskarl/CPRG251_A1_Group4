@@ -21,6 +21,8 @@ public class Periodical extends Book {
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
+	
+	//other methods
 
 	@Override
 	public String formatToFile() {
