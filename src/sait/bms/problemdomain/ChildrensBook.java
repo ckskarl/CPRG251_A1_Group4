@@ -30,6 +30,10 @@ public class ChildrensBook extends Book {
 		this.format = format;
 	}
 	@Override
+	public String formatToFile() {
+		return super.formatToFile()+";"+this.authors+";"+this.format.charAt(0);
+	}
+	@Override
 	public String toString() {
 		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",
 				getCallNumber(), "Available", getAvailableQty(), "Total:", getTotalQty(), "Title:", getTitle(), "Authors:", getAuthors(), "Format:", getFormat());

@@ -30,11 +30,12 @@ public class BookManager {
 				System.out.println("Matching books:");
 				this.searchBook(searchInput);
 			} else if (input.equals("3")) {
-				// display a list of book by type
+				this.displayBookType();
 			} else if (input.equals("4")) {
-				// produce random book list
+				System.out.print("Enter number of books: ");
+				this.produceRandomList(in.nextInt());
 			} else if (input.equals("5")) {
-				// save new arrayList to txt file
+				this.updateAndSave();
 				break;
 			} else {
 				System.out.println("ERROR: Invalid input, please try again!");
@@ -164,4 +165,108 @@ public class BookManager {
 			System.out.println("ERROR: There is no match result.");
 		}
 	}
+
+	/**
+	 * displayBookType is a method that prompts the user to enter a number from 1-4 to determine which
+	 * type of book they want to look up. When the user decides which type of book they want to lookup
+	 *  they can also look up the format, genre, diet, and frequency so that the display is even more
+	 *  specific.
+	 *  @author Christian Lay
+	 */
+	public void displayBookType() throws IOException {
+		Scanner in = new Scanner(System.in);
+		String userChoice;
+		System.out.printf("# %s%n", "Type");
+		System.out.printf("1 %s%n", "Children's Books");
+		System.out.printf("2 %s%n", "Cookbooks");
+		System.out.printf("3 %s%n", "Paperbacks");
+		System.out.printf("4 %s%n%n", "Periodicals");
+		System.out.print("Enter type of book: ");
+		userChoice = in.next();
+		
+		if(userChoice.equals("1")) {
+			System.out.print("Enter a format (P for Picture book, E for Early Readers, or C for Chapter book): ");
+			userChoice = in.next();
+			System.out.println("Matching books:");
+			for(int i = 0; i < books.size(); i++) {
+				if(books.get(i).getIsbn()%10 ==1 || books.get(i).getIsbn()%10 ==0 ) {
+					ChildrensBook childrensBook = (ChildrensBook)books.get(i);
+					if(childrensBook.getFormat().charAt(0) == userChoice.charAt(0)) {
+						System.out.println(childrensBook.toString());
+					}				
+				}
+			}
+		}
+		
+		else if (userChoice.equals("2")) {
+			System.out.print("Enter a diet (D for Diabetic, V for Vegetarian, G for Gluten-free, I for International, or N for None): ");
+			userChoice = in.next();
+			System.out.println("Matching books:");
+			for(int i = 0; i < books.size(); i++) {
+				if(books.get(i).getIsbn()%10 ==2 || books.get(i).getIsbn()%10 ==3 ) {
+					CookBook cookBook = (CookBook)books.get(i);
+					if(cookBook.getDiet().charAt(0) == userChoice.charAt(0)) {
+						System.out.println(cookBook.toString());
+					}		
+				}
+			}
+		}
+		
+		else if (userChoice.equals("3")) {
+			System.out.print("Enter a genre (A for Adventure, D for Drama, E for Education, C for Classic, F for Fantasy, or S for Science Fiction): ");
+			userChoice = in.next();
+			System.out.println("Matching books:");
+			for(int i = 0; i < books.size(); i++) {
+				if(books.get(i).getIsbn()%10 ==4 || books.get(i).getIsbn()%10 ==5 || books.get(i).getIsbn()%10 ==6 || books.get(i).getIsbn()%10 ==7 ) {
+					Paperback paperback = (Paperback)books.get(i);
+					if(paperback.getGenre().charAt(0) == userChoice.charAt(0)) {
+						System.out.println(paperback.toString());
+					}				
+				}
+			}
+		}
+		
+		else if (userChoice.equals("4")) {
+			System.out.print("Enter a frequency (D for Daily, W for Weekly, M for Monthly, B for Bimonthly, and Q for Quarterly): ");
+			userChoice = in.next();
+			System.out.println("Matching books:");
+			for(int i = 0; i < books.size(); i++) {
+				if(books.get(i).getIsbn()%10 ==8 || books.get(i).getIsbn()%10 ==9 ) {
+					Periodical periodical = (Periodical)books.get(i);
+					if(periodical.getFrequency().charAt(0) == userChoice.charAt(0)) {
+						System.out.println(periodical.toString());
+					}					
+				}
+			}
+		}
+	}	
+
+	/**
+	 * This method takes a number, then produces a randomly generated list of books with
+	 * size based on the number given in the input. It does this by selecting the first
+	 * number of books in the books ArrayList after shuffling the contents using 
+	 * Collections.shuffle()
+	 * 
+	 * @param num number of books desired in list
+	 * @author Scott Normore
+	 */
+	public void produceRandomList(int num) {
+		Collections.shuffle(books);
+		for(int i=0; i<num; i++) {
+			System.out.println(books.get(i).toString());
+		}
+	}
+	/**
+	 * This method updates the books list with the checked out/newly added books.
+	 * This method is called whenever one uses the exit input to exit the program.
+	 * @author Scott Normore
+	 */
+	public void updateAndSave() throws IOException {
+		PrintWriter writer = new PrintWriter(new File(PATH));
+		for(int i=0; i<books.size(); i++) {
+			writer.println(books.get(i).formatToFile());
+		}
+		writer.close();
+	}
+	
 }

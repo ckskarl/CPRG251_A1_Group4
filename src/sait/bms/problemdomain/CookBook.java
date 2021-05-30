@@ -31,6 +31,10 @@ public class CookBook extends Book {
 		this.diet = diet;
 	}
 	@Override
+	public String formatToFile() {
+		return super.formatToFile()+";"+this.publisher+";"+this.diet.charAt(0);
+	}
+	@Override
 	public String toString() {
 		return String.format("%-18s%-13s%n%-18s%-13s%n%-18s%-13d%n%-18s%-13d%n%-18s%-30s%n%-18s%-30s%n%-18s%-30s%n", "ISBN:", getIsbn(), "Call Number:",
 				getCallNumber(), "Available", getAvailableQty(), "Total:", getTotalQty(), "Title:", getTitle(), "Publisher:", getPublisher() , "Diet:", getDiet());
