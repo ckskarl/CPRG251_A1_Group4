@@ -75,37 +75,37 @@ public class BookManager {
 			int endingNum;
 			endingNum = (int) (Long.parseLong(record[0]) % 10);
 			switch (endingNum) {
-			case 0:
-			case 1: {
-				ChildrensBook book = new ChildrensBook(Long.parseLong(record[0]), record[1],
+				case 0:
+				case 1: {
+						ChildrensBook book = new ChildrensBook(Long.parseLong(record[0]), record[1],
 						Integer.parseInt(record[2]), Integer.parseInt(record[3]), record[4], record[5], record[6]);
-				this.books.add(book);
-				break;
-			}
-			case 2:
-			case 3: {
-				CookBook book = new CookBook(Long.parseLong(record[0]), record[1], Integer.parseInt(record[2]),
+						this.books.add(book);
+						break;
+						}
+				case 2:
+				case 3: {
+						CookBook book = new CookBook(Long.parseLong(record[0]), record[1], Integer.parseInt(record[2]),
 						Integer.parseInt(record[3]), record[4], record[5], record[6]);
-				this.books.add(book);
-				break;
-			}
-			case 4:
-			case 5:
-			case 6:
-			case 7: {
-				Paperback book = new Paperback(Long.parseLong(record[0]), record[1], Integer.parseInt(record[2]),
+						this.books.add(book);
+						break;
+						}
+				case 4:
+				case 5:
+				case 6:
+				case 7: {
+						Paperback book = new Paperback(Long.parseLong(record[0]), record[1], Integer.parseInt(record[2]),
 						Integer.parseInt(record[3]), record[4], record[5], Integer.parseInt(record[6]), record[7]);
-				this.books.add(book);
-				break;
-			}
-			case 8:
-			case 9: {
-				Periodical book = new Periodical(Long.parseLong(record[0]), record[1], Integer.parseInt(record[2]),
+						this.books.add(book);
+						break;
+						}
+				case 8:
+				case 9: {
+						Periodical book = new Periodical(Long.parseLong(record[0]), record[1], Integer.parseInt(record[2]),
 						Integer.parseInt(record[3]), record[4], record[5]);
-				this.books.add(book);
-				break;
-			}
-			}
+						this.books.add(book);
+						break;
+						}
+				}
 		}
 		fileReader.close();
 	}
