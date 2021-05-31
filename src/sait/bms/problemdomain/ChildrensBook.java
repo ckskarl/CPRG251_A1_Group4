@@ -1,5 +1,10 @@
 package sait.bms.problemdomain;
 
+/**
+ * Child of the books class. Contains Authors and format.
+ * 
+ * @author The Group
+ */
 public class ChildrensBook extends Book {
 	private String authors;
 	private String format;

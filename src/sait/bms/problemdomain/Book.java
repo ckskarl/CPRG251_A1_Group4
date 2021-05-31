@@ -1,5 +1,10 @@
 package sait.bms.problemdomain;
 
+/**
+ * The Parent Class Books. Contains ISBN, CallNumber, AvailavleQty, totalQty, and title
+ * 
+ * @author The Group
+ */
 public class Book {
 	// Attributes
 
