@@ -1,5 +1,10 @@
 package sait.bms.problemdomain;
 
+/**
+ * Child of the books class. Contains publisher and diet.
+ * 
+ * @author The Group
+ */
 public class CookBook extends Book {
 	private String publisher;
 	private String diet;

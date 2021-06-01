@@ -1,5 +1,10 @@
 package sait.bms.problemdomain;
 
+/**
+ * Child of the books class. Contains Frequency.
+ * 
+ * @author The Group
+ */
 public class Periodical extends Book {
 	private String frequency;
 

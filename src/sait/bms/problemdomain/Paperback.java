@@ -1,5 +1,10 @@
 package sait.bms.problemdomain;
 
+/**
+ * Child of the books class. Contains authors, year, and genre.
+ * 
+ * @author The Group
+ */
 public class Paperback extends Book {
 	private String authors;
 	private int year;

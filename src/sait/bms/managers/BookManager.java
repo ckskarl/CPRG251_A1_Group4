@@ -36,10 +36,12 @@ public class BookManager {
 				this.produceRandomList(in.nextInt());
 			} else if (input.equals("5")) {
 				this.updateAndSave();
+				in.close();
 				break;
 			} else {
 				System.out.println("ERROR: Invalid input, please try again!");
 			}
+			in.close();
 		}
 
 		System.out.println("Thanks for using! File has been updated. See you!");
@@ -123,7 +125,6 @@ public class BookManager {
 	 * @author Kin Shing Chong
 	 */
 	public void checkOut(long inputISBN) {
-		// System.out.println(inputISBN);
 		int matchCount = 0;
 		for (Book currentBook : this.books) {
 			if (currentBook.getIsbn() == inputISBN) {
@@ -175,12 +176,13 @@ public class BookManager {
 	 */
 	public void displayBookType() throws IOException {
 		Scanner in = new Scanner(System.in);
+		boolean flag=false; //The flag is used for checking if there is any books that match the category later.
 		String userChoice;
-		System.out.printf("# %s%n", "Type");
-		System.out.printf("1 %s%n", "Children's Books");
-		System.out.printf("2 %s%n", "Cookbooks");
-		System.out.printf("3 %s%n", "Paperbacks");
-		System.out.printf("4 %s%n%n", "Periodicals");
+		System.out.println("#     Type");
+		System.out.println("1     Children's Books");
+		System.out.println("2     Cookbooks");
+		System.out.println("3     Paperbacks");
+		System.out.println("4     Periodicals");
 		System.out.print("Enter type of book: ");
 		userChoice = in.next();
 		
@@ -193,8 +195,12 @@ public class BookManager {
 					ChildrensBook childrensBook = (ChildrensBook)books.get(i);
 					if(childrensBook.getFormat().charAt(0) == userChoice.charAt(0)) {
 						System.out.println(childrensBook.toString());
+						flag=true;
 					}				
 				}
+			}
+			if(!flag) {
+				System.out.println("ERROR: There is no match result.");
 			}
 		}
 		
@@ -207,22 +213,30 @@ public class BookManager {
 					CookBook cookBook = (CookBook)books.get(i);
 					if(cookBook.getDiet().charAt(0) == userChoice.charAt(0)) {
 						System.out.println(cookBook.toString());
+						flag=true;
 					}		
 				}
+			}
+			if(!flag) {
+				System.out.println("ERROR: There is no match result.");
 			}
 		}
 		
 		else if (userChoice.equals("3")) {
 			System.out.print("Enter a genre (A for Adventure, D for Drama, E for Education, C for Classic, F for Fantasy, or S for Science Fiction): ");
 			userChoice = in.next();
-			System.out.println("Matching books:");
+			System.out.println("Matching books:");	
 			for(int i = 0; i < books.size(); i++) {
 				if(books.get(i).getIsbn()%10 ==4 || books.get(i).getIsbn()%10 ==5 || books.get(i).getIsbn()%10 ==6 || books.get(i).getIsbn()%10 ==7 ) {
 					Paperback paperback = (Paperback)books.get(i);
 					if(paperback.getGenre().charAt(0) == userChoice.charAt(0)) {
 						System.out.println(paperback.toString());
+						flag=true;
 					}				
 				}
+			}
+			if(!flag) {
+				System.out.println("ERROR: There is no match result.");
 			}
 		}
 		
@@ -235,10 +249,18 @@ public class BookManager {
 					Periodical periodical = (Periodical)books.get(i);
 					if(periodical.getFrequency().charAt(0) == userChoice.charAt(0)) {
 						System.out.println(periodical.toString());
+						flag=true;
 					}					
 				}
 			}
+			if(!flag) {
+				System.out.println("ERROR: There is no match result.");
+			}
 		}
+		else {
+			System.out.println("ERROR: Invalid input, please try again!");
+		}
+		in.close();
 	}	
 
 	/**
