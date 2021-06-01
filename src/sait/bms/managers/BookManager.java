@@ -74,7 +74,7 @@ public class BookManager {
 	}
 
 	/**
-	 * a method that parses the supplied ìbooks.txtî file into a single array list.
+	 * a method that parses the supplied ‚Äúbooks.txt‚Äù file into a single array list.
 	 * The array list will be able to contain all Book types
 	 * 
 	 * @throws IOException We don't catch these
@@ -268,6 +268,7 @@ public class BookManager {
 		}
 		else {
 			System.out.println("ERROR: Invalid input, please try again!");
+			in.close();
 		}
 		in.nextLine();
 	}	
