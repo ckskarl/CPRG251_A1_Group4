@@ -11,9 +11,18 @@ import java.io.*;
  * 
  */
 public class BookManager {
+	/**
+	 * This is the path that it will read the book object, and it is also where it is saved after the program is nolonger running
+	 */
 	private final static String PATH = "res\\books.txt";
+	/**
+	 * This is where we keep the books store while the program is running
+	 */
 	private ArrayList<Book> books = new ArrayList<>();
-
+	/**
+	 * This method runs the program
+	 * @throws IOException We don't catch these
+	 */
 	public void run() throws IOException {
 		this.readFile();
 		while (true) {
@@ -68,7 +77,7 @@ public class BookManager {
 	 * a method that parses the supplied “books.txt” file into a single array list.
 	 * The array list will be able to contain all Book types
 	 * 
-	 * @throws IOException
+	 * @throws IOException We don't catch these
 	 * @author Scott Normore, Gao Liu, Christian Lay, Kin Shing Chong
 	 */
 	public void readFile() throws IOException {
@@ -173,6 +182,7 @@ public class BookManager {
 	 *  they can also look up the format, genre, diet, and frequency so that the display is even more
 	 *  specific.
 	 *  @author Christian Lay
+	 *  @throws IOException We don't catch these
 	 */
 	public void displayBookType() throws IOException {
 		Scanner in = new Scanner(System.in);
@@ -273,9 +283,14 @@ public class BookManager {
 	 * @author Scott Normore
 	 */
 	public void produceRandomList(int num) {
-		Collections.shuffle(books);
-		for(int i=0; i<num; i++) {
-			System.out.println(books.get(i).toString());
+		if(num>books.size()) {
+			System.out.println("ERROR: Invalid input, please try again!");
+		}
+		else {
+			Collections.shuffle(books);
+			for(int i=0; i<num; i++) {
+				System.out.println(books.get(i).toString());
+			}
 		}
 	}
 	
@@ -283,6 +298,7 @@ public class BookManager {
 	 * This method updates the books list with the checked out/newly added books.
 	 * This method is called whenever one uses the exit input to exit the program.
 	 * @author Scott Normore
+	 * @throws IOException We don't catch these
 	 */
 	public void updateAndSave() throws IOException {
 		PrintWriter writer = new PrintWriter(new File(PATH));
