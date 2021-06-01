@@ -36,10 +36,12 @@ public class BookManager {
 				this.produceRandomList(in.nextInt());
 			} else if (input.equals("5")) {
 				this.updateAndSave();
+				in.close();
 				break;
 			} else {
 				System.out.println("ERROR: Invalid input, please try again!");
 			}
+			in.close();
 		}
 
 		System.out.println("Thanks for using! File has been updated. See you!");
@@ -258,6 +260,7 @@ public class BookManager {
 		else {
 			System.out.println("ERROR: Invalid input, please try again!");
 		}
+		in.close();
 	}	
 
 	/**
