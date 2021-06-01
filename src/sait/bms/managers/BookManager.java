@@ -39,10 +39,11 @@ public class BookManager {
 				System.out.println("Matching books:");
 				this.searchBook(searchInput);
 			} else if (input.equals("3")) {
-				this.displayBookType();
+				this.displayBookType(in);
 			} else if (input.equals("4")) {
 				System.out.print("Enter number of books: ");
 				this.produceRandomList(in.nextInt());
+				in.nextLine();
 			} else if (input.equals("5")) {
 				this.updateAndSave();
 				in.close();
@@ -73,7 +74,7 @@ public class BookManager {
 	}
 
 	/**
-	 * a method that parses the supplied ìbooks.txtî file into a single array list.
+	 * a method that parses the supplied ‚Äúbooks.txt‚Äù file into a single array list.
 	 * The array list will be able to contain all Book types
 	 * 
 	 * @throws IOException We don't catch these
@@ -183,8 +184,7 @@ public class BookManager {
 	 *  @author Christian Lay
 	 *  @throws IOException We don't catch these
 	 */
-	public void displayBookType() throws IOException {
-		Scanner in = new Scanner(System.in);
+	public void displayBookType(Scanner in) throws IOException {
 		boolean flag=false; //The flag is used for checking if there is any books that match the category later.
 		String userChoice;
 		System.out.println("#     Type");
@@ -270,7 +270,7 @@ public class BookManager {
 			System.out.println("ERROR: Invalid input, please try again!");
 			in.close();
 		}
-		
+		in.nextLine();
 	}	
 
 	/**
