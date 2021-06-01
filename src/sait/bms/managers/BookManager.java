@@ -12,7 +12,7 @@ import java.io.*;
  */
 public class BookManager {
 	/**
-	 * This is the path that it will read the book object, and it is also where it is saved after the program is nolonger running
+	 * This is the path that it will read the book object, and it is also where it is saved after the program is no longer running
 	 */
 	private final static String PATH = "res\\books.txt";
 	/**
@@ -31,8 +31,14 @@ public class BookManager {
 			String input = in.nextLine();
 			if (input.equals("1")) {
 				System.out.print("Enter ISBN of book: ");
-				long inputISBN = Long.parseLong(in.nextLine());
-				this.checkOut(inputISBN);
+				input = in.nextLine();
+				if(input.length()==13) {
+				long inputISBN = Long.parseLong(input);
+				this.checkOut(inputISBN);	
+				}
+				else {
+					System.out.println("ERROR: Invalid input, please try again!");
+				}
 			} else if (input.equals("2")) {
 				System.out.print("Enter title to search for: ");
 				String searchInput = in.nextLine().toLowerCase();
@@ -74,7 +80,7 @@ public class BookManager {
 	}
 
 	/**
-	 * a method that parses the supplied “books.txt” file into a single array list.
+	 * a method that parses the supplied â€œbooks.txtâ€� file into a single array list.
 	 * The array list will be able to contain all Book types
 	 * 
 	 * @throws IOException We don't catch these
@@ -268,7 +274,7 @@ public class BookManager {
 		}
 		else {
 			System.out.println("ERROR: Invalid input, please try again!");
-			in.close();
+//			in.close();
 		}
 		in.nextLine();
 	}	
