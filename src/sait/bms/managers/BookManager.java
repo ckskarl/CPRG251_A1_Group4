@@ -25,9 +25,9 @@ public class BookManager {
 	 */
 	public void run() throws IOException {
 		this.readFile();
+		Scanner in = new Scanner(System.in);
 		while (true) {
 			printMenu();
-			Scanner in = new Scanner(System.in);
 			String input = in.nextLine();
 			if (input.equals("1")) {
 				System.out.print("Enter ISBN of book: ");
@@ -50,7 +50,6 @@ public class BookManager {
 			} else {
 				System.out.println("ERROR: Invalid input, please try again!");
 			}
-			in.close();
 		}
 
 		System.out.println("Thanks for using! File has been updated. See you!");
