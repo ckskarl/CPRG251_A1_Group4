@@ -268,8 +268,9 @@ public class BookManager {
 		}
 		else {
 			System.out.println("ERROR: Invalid input, please try again!");
+			in.close();
 		}
-		in.close();
+		
 	}	
 
 	/**
