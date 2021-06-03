@@ -31,8 +31,16 @@ public class BookManager {
 			String input = in.nextLine();
 			if (input.equals("1")) {
 				System.out.print("Enter ISBN of book: ");
-				long inputISBN = Long.parseLong(in.nextLine());
-				this.checkOut(inputISBN);
+				try {
+					long inputISBN = Long.parseLong(in.nextLine());
+					if (inputISBN<=999999999999L || inputISBN>=9000000000000L) {
+						this.checkOut(inputISBN);
+					}else {
+						System.out.println("ERROR: Invalid input, please try again!");
+					}
+				} catch (Exception e) {
+					System.out.println("ERROR: Invalid input, please try again!");
+				}
 			} else if (input.equals("2")) {
 				System.out.print("Enter title to search for: ");
 				String searchInput = in.nextLine().toLowerCase();
@@ -46,8 +54,8 @@ public class BookManager {
 			} else if (input.equals("5")) {
 				this.updateAndSave();
 				in.close();
-				break;
-			} else {
+				break; 
+			}else {
 				System.out.println("ERROR: Invalid input, please try again!");
 			}
 		}
