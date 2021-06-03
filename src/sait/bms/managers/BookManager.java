@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * This class contains most of public methods to interact with user.
  * 
- * @author Scott Normore, Gao Liu, Christian Lay, Kin Shing Chong
+ * @author The Group 4 
  * 
  */
 public class BookManager {
@@ -32,11 +32,10 @@ public class BookManager {
 			if (input.equals("1")) {
 				System.out.print("Enter ISBN of book: ");
 				input = in.nextLine();
-				if(input.length()==13) {
+				try {
 				long inputISBN = Long.parseLong(input);
 				this.checkOut(inputISBN);	
-				}
-				else {
+				} catch (NumberFormatException e) {
 					System.out.println("ERROR: Invalid input, please try again!");
 				}
 			} else if (input.equals("2")) {
@@ -48,7 +47,11 @@ public class BookManager {
 				this.displayBookType(in);
 			} else if (input.equals("4")) {
 				System.out.print("Enter number of books: ");
+				try {
 				this.produceRandomList(in.nextInt());
+				} catch (InputMismatchException e) {
+					System.out.println("ERROR: Invalid input, please try again!");
+				}
 				in.nextLine();
 			} else if (input.equals("5")) {
 				this.updateAndSave();
@@ -80,11 +83,11 @@ public class BookManager {
 	}
 
 	/**
-	 * a method that parses the supplied â€œbooks.txtâ€� file into a single array list.
+	 * a method that parses the supplied txt file into a single array list.
 	 * The array list will be able to contain all Book types
 	 * 
 	 * @throws IOException We don't catch these
-	 * @author Scott Normore, Gao Liu, Christian Lay, Kin Shing Chong
+	 * @author The Group 4
 	 */
 	public void readFile() throws IOException {
 		Scanner fileReader = new Scanner(new File(PATH));
@@ -203,7 +206,8 @@ public class BookManager {
 		
 		if(userChoice.equals("1")) {
 			System.out.print("Enter a format (P for Picture book, E for Early Readers, or C for Chapter book): ");
-			userChoice = in.next();
+			userChoice = in.next().toUpperCase();
+			if(userChoice.length()==1 && Character.isLetter(userChoice.charAt(0))) {
 			System.out.println("Matching books:");
 			for(int i = 0; i < books.size(); i++) {
 				if(books.get(i).getIsbn()%10 ==1 || books.get(i).getIsbn()%10 ==0 ) {
@@ -217,11 +221,16 @@ public class BookManager {
 			if(!flag) {
 				System.out.println("ERROR: There is no match result.");
 			}
+			} 
+			else {
+				System.out.println("ERROR: Invalid input, please try again!");
+			}
 		}
 		
 		else if (userChoice.equals("2")) {
 			System.out.print("Enter a diet (D for Diabetic, V for Vegetarian, G for Gluten-free, I for International, or N for None): ");
-			userChoice = in.next();
+			userChoice = in.next().toUpperCase();
+			if(userChoice.length()==1 && Character.isLetter(userChoice.charAt(0))) {
 			System.out.println("Matching books:");
 			for(int i = 0; i < books.size(); i++) {
 				if(books.get(i).getIsbn()%10 ==2 || books.get(i).getIsbn()%10 ==3 ) {
@@ -235,11 +244,16 @@ public class BookManager {
 			if(!flag) {
 				System.out.println("ERROR: There is no match result.");
 			}
+			}
+			else {
+				System.out.println("ERROR: Invalid input, please try again!");
+			}
 		}
 		
 		else if (userChoice.equals("3")) {
 			System.out.print("Enter a genre (A for Adventure, D for Drama, E for Education, C for Classic, F for Fantasy, or S for Science Fiction): ");
-			userChoice = in.next();
+			userChoice = in.next().toUpperCase();
+			if(userChoice.length()==1 && Character.isLetter(userChoice.charAt(0))) {
 			System.out.println("Matching books:");	
 			for(int i = 0; i < books.size(); i++) {
 				if(books.get(i).getIsbn()%10 ==4 || books.get(i).getIsbn()%10 ==5 || books.get(i).getIsbn()%10 ==6 || books.get(i).getIsbn()%10 ==7 ) {
@@ -253,11 +267,16 @@ public class BookManager {
 			if(!flag) {
 				System.out.println("ERROR: There is no match result.");
 			}
+			}
+			else {
+				System.out.println("ERROR: Invalid input, please try again!");
+			}
 		}
 		
 		else if (userChoice.equals("4")) {
 			System.out.print("Enter a frequency (D for Daily, W for Weekly, M for Monthly, B for Bimonthly, and Q for Quarterly): ");
-			userChoice = in.next();
+			userChoice = in.next().toUpperCase();
+			if(userChoice.length()==1 && Character.isLetter(userChoice.charAt(0))) {
 			System.out.println("Matching books:");
 			for(int i = 0; i < books.size(); i++) {
 				if(books.get(i).getIsbn()%10 ==8 || books.get(i).getIsbn()%10 ==9 ) {
@@ -270,6 +289,10 @@ public class BookManager {
 			}
 			if(!flag) {
 				System.out.println("ERROR: There is no match result.");
+			}
+			}
+			else {
+				System.out.println("ERROR: Invalid input, please try again!");
 			}
 		}
 		else {
